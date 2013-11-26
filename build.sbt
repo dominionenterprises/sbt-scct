@@ -1,4 +1,4 @@
-organization := "com.github.scct"
+organization := "com.sqality.scct"
 
 name := "sbt-scct"
 
@@ -14,7 +14,7 @@ crossBuildingSettings
 
 CrossBuilding.crossSbtVersions := Seq("0.12", "0.13")
 
-libraryDependencies += "com.github.scct" %% "scct" % "0.2.1"
+libraryDependencies += "com.sqality.scct" %% "scct" % "0.2.2"
 
 publishTo <<= version { (v: String) =>
   val nexus = "https://oss.sonatype.org/"
@@ -28,7 +28,7 @@ publishArtifact in Test := false
 
 pomIncludeRepository := { x => false }
 
-pomExtra := <url>http://scct.github.io/scct/</url>
+pomExtra := <url>http://sqality.com</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>

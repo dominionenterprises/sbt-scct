@@ -18,7 +18,7 @@ object ScctPlugin extends Plugin {
 
       ivyConfigurations ++= Seq(Scct, ScctTest),
 
-      libraryDependencies += "com.github.scct" %% "scct" % "0.2.1" % "scct",
+      libraryDependencies += "com.sqality.scct" %% "scct" % "0.2.2" % "scct",
 
       sources in Scct <<= (sources in Compile),
       sourceDirectory in Scct <<= (sourceDirectory in Compile),
@@ -68,7 +68,7 @@ object ScctPlugin extends Plugin {
   })
 
   def scctJarPath = {
-    val url = classOf[com.github.scct.ScctInstrumentPlugin].getProtectionDomain().getCodeSource().getLocation()
+    val url = classOf[com.sqality.scct.ScctInstrumentPlugin].getProtectionDomain().getCodeSource().getLocation()
     new File(url.toURI).getAbsolutePath
   }
 
@@ -98,7 +98,7 @@ object ScctPlugin extends Plugin {
   }
 
   def generateReport(input: Seq[File], out: File) = {
-    import com.github.scct.report._
+    import com.sqality.scct.report._
     MultiProjectHtmlReporter.report(input, out)
     out
   }
