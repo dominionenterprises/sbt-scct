@@ -9,7 +9,7 @@ sbt integration to scct
 help, instructions and usage
 ===========================
 
-* http://github.com/SCCT/scct
+* http://github.com/sqality/scct
 
 
 relevant branches
