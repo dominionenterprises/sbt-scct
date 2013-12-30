@@ -1,4 +1,4 @@
-organization := "com.github.scct"
+organization := "com.dmm.scct"
 
 name := "sbt-scct"
 
