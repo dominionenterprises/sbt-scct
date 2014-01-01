@@ -24,7 +24,7 @@ object ScctPlugin extends Plugin {
       //resolvers += Resolver.url("local-ivy", new URL("file://" + Path.userHome.absolutePath + "/.ivy2/local"))(Resolver.ivyStylePatterns),
       resolvers += "Sonatype OSS" at "https://oss.sonatype.org/content/repositories/snapshots",
 
-      libraryDependencies += "com.github.scct" %% "scct" % "0.3-SNAPSHOT" % "scct",
+      libraryDependencies += "dmm.scct" %% "scct" % "0.3-SNAPSHOT" % "scct",
 
       sources in Scct <<= (sources in Compile),
       sourceDirectory in Scct <<= (sourceDirectory in Compile),
@@ -76,7 +76,7 @@ object ScctPlugin extends Plugin {
   })
 
   def scctJarPath = {
-    val url = classOf[com.github.scct.ScctInstrumentPlugin].getProtectionDomain().getCodeSource().getLocation()
+    val url = classOf[com.sqality.scct.ScctInstrumentPlugin].getProtectionDomain().getCodeSource().getLocation()
     new File(url.toURI).getAbsolutePath
   }
 
@@ -106,7 +106,7 @@ object ScctPlugin extends Plugin {
   }
 
   def generateReport(input: Seq[File], out: File) = {
-    import com.github.scct.report._
+    import com.sqality.scct.report._
     MultiProjectHtmlReporter.report(input, out)
     out
   }
@@ -121,6 +121,7 @@ object ScctPlugin extends Plugin {
   def testSetup() =
     (name in Scct, baseDirectory in Scct, scalaSource in Scct, classDirectory in ScctTest, scctExcludePackages in ScctTest, definedTests in ScctTest, scctReportDir, streams) map {
       (name, baseDirectory, scalaSource, classDirectory, scctExcludePackages, definedTests, scctReportDir, streams) =>
+        println("sbt-scct scctExcludePackages: " + scctExcludePackages)
         if (definedTests.isEmpty) {
           streams.log.debug(logPrefix(name) + "No tests found. Skip SCCT setup hook.")
           Tests.Setup { () => {} }
@@ -134,7 +135,7 @@ object ScctPlugin extends Plugin {
             props.setProperty("scct.project.name", name)
             props.setProperty("scct.report.dir", scctReportDir.getAbsolutePath)
             props.setProperty("scct.source.dir", scalaSource.getAbsolutePath)
-            props.setProperty("scct.excluded.paths.regex", scctExcludePackages.configuration.getOrElse(""))
+            props.setProperty("scct.excluded.paths.regex", scctExcludePackages)
             IO.write(props, "Env for scct test run and report generation", out)
           }
     }
