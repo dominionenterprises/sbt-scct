@@ -145,8 +145,8 @@ object ScctPlugin extends Plugin {
             props.setProperty("scct.project.name", name)
             props.setProperty("scct.report.dir", scctReportDir.getAbsolutePath)
             props.setProperty("scct.source.dir", scalaSource.getAbsolutePath)
-            props.setProperty("scct.excluded.classes.regex", scctExcludePackages.configuration.getOrElse(""))
-            props.setProperty("scct.excluded.paths.regex", scctExcludeFiles.configuration.getOrElse(""))
+            props.setProperty("scct.excluded.classes.regex", scctExcludePackages)
+            props.setProperty("scct.excluded.paths.regex", scctExcludeFiles)
             IO.write(props, "Env for scct test run and report generation", out)
           }
     }
