@@ -12,7 +12,7 @@ credentials += Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.or
 
 credentials += Credentials("Artifactory Realm", System.getProperty("deploy.realm"), System.getProperty("deploy.user"), System.getProperty("deploy.password"))
 
-resolvers += "dmm-libs-snapshots" at "http://dominionmarinemedia.artifactoryonline.com/dominionmarinemedia/libs-snapshots-local"
+resolvers += "dmm-plugins-snapshots" at "http://dominionmarinemedia.artifactoryonline.com/dominionmarinemedia/plugins-snapshots-local"
 
 resolvers += "Sonatype OSS" at "https://oss.sonatype.org/content/repositories/snapshots"
 
